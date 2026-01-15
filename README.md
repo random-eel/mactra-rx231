@@ -1,3 +1,5 @@
+<img width="80%" src="images/mactra_preview.png">
+
 # Mactra RX231搭載 エンコーダ付き7キーマクロパッド/開発ボード
 Mactra はRenesas製RX231マイコンを搭載した RKJXT1Fロータリーエンコーダ/4方向ジョイスティック付き 7キーマクロパッド 兼 開発ボードです。  
 ## 仕様・機能
