@@ -1,4 +1,6 @@
-<img width="80%" src="images/mactra_preview.png">
+<p align="center">
+<img width="80%" src="images/Mactra-render-2.png">
+</p>  
 
 # Mactra RX231搭載 エンコーダ付き7キーマクロパッド/開発ボード
 Mactra はRenesas製RX231マイコンを搭載した、7キーマクロパッド 兼 開発ボードです。  
@@ -7,7 +9,7 @@ Mactra はRenesas製RX231マイコンを搭載した、7キーマクロパッド
 |開発状況|内容|説明|
 |:---:|:---:|---:|
 |✅️|Lチカ|背面LED点滅|
-|✅️|GPIOチェックファームの作製|ハンダ付けテスト用|
+|✅️|[GPIOチェックファームの作製](https://github.com/random-eel/mactra-rx231/blob/main/firmwares/RX231-Mactra-GPIO-Test.mot)|ハンダ付けテスト用|
 |▶️|マトリクステスト|全キーのスキャン|
 |🔜|ロータリーエンコーダ回転対応|左右回転方向等の取得|
 |🔜|エンコーダ4方向スイッチ対応|上下左右のスイッチ|
@@ -149,7 +151,7 @@ MCUのサポートが無いので無理です。どなたかがChibiOSを移植�
 ### でも他のMCUの方が安いし楽なのでは?
 RXシリーズの勉強用なので、それでは意味が無かったんですよ、うん…
 ### 回路図は？  
-そのうち追加予定です。  
+~~そのうち追加予定です。~~ 26/1/26: 追加しました。[docs/mactra-schematics.pdf](https://github.com/random-eel/mactra-rx231/blob/main/docs/mactra-schematics.pdf) 
 ### 基板データは？
 いずれ追加予定です。配線汚いけど。  
 ### アナログ出力ヤバいんだけど
