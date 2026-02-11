@@ -33,17 +33,16 @@ Mactra はRenesas製RX231マイコンを搭載した、7キーマクロパッド
 |:---:|:---:|---:|
 |✅️|Lチカ|背面LED点滅|
 |✅️|[GPIOチェックファームの作製](https://github.com/random-eel/mactra-rx231/blob/main/firmwares/RX231-Mactra-GPIO-Test.mot)|ハンダ付けテスト用|
-|❗|マトリクステスト|全キーのスキャン**|
-|🔜|ロータリーエンコーダ回転対応|左右回転方向等の取得|
-|🔜|エンコーダ4方向スイッチ対応|上下左右のスイッチ|
-|▶️|USBファンクション動作|USBデバイスとして認識*|
-||キーボード動作|マクロキーとして使用可能に|
+|✅️|[マトリクステスト](https://github.com/random-eel/mactra-rx231/blob/main/firmwares/RX231-Mactra-Matrix-Test.mot)|全キーのスキャン|
+|✅️|ロータリーエンコーダ回転対応|左右回転方向等の取得|
+|✅️|エンコーダ4方向スイッチ対応|上下左右のスイッチ|
+|✅️|USBファンクション動作|USBデバイスとして認識|
+|✅️|キーボード動作|マクロキーとして使用可能に|
 |✅️|[RGB LED動作](https://github.com/random-eel/mactra-rx231/blob/main/firmwares/RX231-Mactra-SK6812Mini-E-Test.mot)|SK6812Mini-Eの点灯|
-||RGB LED設定対応|キー同時押し等で変更|
-||キーの設定変更対応|(ストレッチゴール)|
-
-\* 26/2/1 現在USBデバイスとしてデバイスマネージャーに表示されますが、デバイス記述子を送れていません。  
-** 26/2/1 Rev.2ボード待ちです。  
+|🔜|RGB LED設定対応|キー同時押し等で変更|
+|⚠️|キーの設定変更対応|(ストレッチゴール)*|  
+  
+\* 現状マイコンとの通信方法が無いため、実装は未定です。  
 
 ## 使用方法
 Mactra本体とホストデバイスをUSB-Cケーブルで接続します。  
@@ -61,7 +60,7 @@ Mactra本体とホストデバイスをUSB-Cケーブルで接続します。
 前曲 再生/停止 次曲   [F22] [F23] [F24] 
     輝度ダウン
 
-    [ミュート]      [未定] [未定] [Alt+PrSc]
+    [ミュート]      [Pause] [Alt+PrSc] [PrSc]
 ```
 
 RGB LEDの点灯パターン・色変更等は、操作仕様が未確定なので未実装です。  
@@ -69,6 +68,9 @@ RGB LEDの点灯パターン・色変更等は、操作仕様が未確定なの�
 マルチプルエンドポイントを使用したシリアル通信で変更可能になる予定です。  
 
 ### 開発ボードとして使用する場合
+<details>  
+<summary>詳細</summary>  
+   
 基板上で<u>GPIOへのプルアップ抵抗の接続はありません</u>。  
 内蔵プルアップ抵抗を利用して下さい。  
 また、開発ボードとしてGPIOを使用する際には、基板上で接続されているピンも含まれているので、使用時には注意が必要です。  
@@ -100,7 +102,6 @@ RGB LEDの点灯パターン・色変更等は、操作仕様が未確定なの�
 
 #### プログラムをUSB経由で書き込んで使う場合
 
-> [!WARNING]
 > ##### ⚠️ Rev.1の場合
 > スイッチを設定しても、ブートローダーモードへ起動せず、ファームウェアが書き込めません。  
 > GPIO P16ピン と 3V3 ピンを接続してください。
@@ -109,7 +110,8 @@ RGB LEDの点灯パターン・色変更等は、操作仕様が未確定なの�
 > USB側にスライドするとOFFです。
  
 <details>
-
+<summary>詳細</summary>
+ 
 1. **ケーブルを抜いた状態**で、背面ディップスイッチを BOOT MODE: On; USB BOOT: On; に設定後、ケーブルを接続します。  
 2. Renesas Flash Programmer を使用して、ビルドしたプログラムを指定し、書き込みます。  
 3. **ケーブルを抜き**、背面ディップスイッチを BOOT MODE: Off; USB BOOT: Off; に設定後、ケーブルを再接続します。
@@ -117,12 +119,15 @@ RGB LEDの点灯パターン・色変更等は、操作仕様が未確定なの�
 
 #### E2 エミュレータを使う場合(オンチップデバッギング)
 <details>
+<summary>詳細</summary>
  
 1. **電源を切った状態**で、背面ディップスイッチを BOOT MODE: On; USB BOOT: **Off**; に設定します。
 2. CS+/e2studio で E2エミュレータの設定をし、接続します。 (電源供給可)
 3. プログラムを実行します。  
 ※ E2エミュレータから電源を供給すると、5V端子の出力は無効化されます。
 </details>
+
+</details>  
 
 ## ケースについて
 casesフォルダに3Dプリンタで出力可能なモデルを用意してあります。  
@@ -146,6 +151,24 @@ Renesas製のサンプルコード及びFITモジュールを使用している�
 ## 免責事項
 このファームウェア・製品を使用していて、誤字が増えた、ホストデバイスが壊れた、核戦争が起きた、デバイスが正しく動作しなかったせいで会社をクビになった等があっても、設計/製作者は一切の責任を負いません。  
 
+## 使用したアプリ・参考にしたサイト・サンプルコード等
+* KiCAD 9.0.6
+* Fusion 360
+* [Keyboard Layout Editor](https://www.keyboard-layout-editor.com/)
+* [ai03 Plate Generator](https://kbplate.ai03.com/)
+* [秋月電子 RX621マイコンボード 参考資料(回路図)](https://akizukidenshi.com/catalog/g/g105763/)
+* [RSK-RX231 RX231 CPU Board Schematics](https://www.renesas.com/ja/design-resources/boards-kits/rsk-rx231)  
+* [RX230, RX231 ハンドブック](https://www.renesas.com/ja/products/rx231)
+* [RX230グループ、RX231グループ　ユーザーズマニュアル　ハードウェア編](https://www.renesas.com/ja/products/rx231)
+* [RXファミリ ハードウェアデザインガイド](https://www.renesas.com/ja/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus#get-started)
+* [メインクロック回路、サブクロック回路のデザインガイド](https://www.renesas.com/ja/products/microcontrollers-microprocessors/rx-32-bit-performance-efficiency-mcus#get-started)
+* [Hardware design with RP2040](https://www.raspberrypi.com/documentation/microcontrollers/pico-series.html#documentation)
+* [USB.org HID Usage Descrptions](https://usb.org/sites/default/files/hut1_21.pdf)
+* RX Family Sample Program using USB Host Human Interface Device Class Driver (HHID) to communicate via USB with HID device Firmware Integration Technology Rev.1.30 - Sample Code (r01an2294)
+* [tmk_keyboard](https://github.com/tmk/tmk_keyboard)
+* [TinyUSB](https://github.com/hathach/tinyusb)
+* Google Gemini
+
 ## FAQ
 ### 動作しない
 電源LEDが点灯しない場合は、故障だと思われます。  
@@ -157,7 +180,8 @@ Renesas製のサンプルコード及びFITモジュールを使用している�
 RKJXT1Fは、AliExpressから購入すると良いかもしれません。  
 PCBAをするならJLCPCBをおすすめします。代替・未実装の部品を指定すると価格を抑えられます。 (not affiliated!)  
 スイッチ・キーキャップ含め 5枚で2万円程になると思います。(25/1/16)  
-### その他
+  
+## その他
  
 <details>
   <summary>詳細</summary>
@@ -172,10 +196,12 @@ MCUのサポートが無いので無理です。どなたかがChibiOSを移植�
 ( ◠‿◠ ) 無い。（多分… 動作しなかったら考えます）  
 ### でも他のMCUの方が安いし楽なのでは?
 RXシリーズの勉強用なので、それでは意味が無かったんですよ、うん…
+### 勉強に使える開発ボードにしてはBYTEでアクセスしづらくない？
+安く手に入るチップがこれだったので仕方がありませんでした。  
 ### 回路図は？  
-~~そのうち追加予定です。~~ 26/1/26: 追加しました。[docs/mactra-schematics.pdf](https://github.com/random-eel/mactra-rx231/blob/main/docs/mactra-schematics.pdf) 
+~~そのうち追加予定です。~~ 26/1/26: 追加しました。[docs/mactra-schematics-rev2.pdf](https://github.com/random-eel/mactra-rx231/blob/main/docs/mactra-schematics-rev2.pdf) 
 ### 基板データは？
-いずれ追加予定です。配線汚いけど。  
+いずれ追加予定です。配線汚いけど。（Rev.2も思った通りの動作ではない為未定です…)   
 ### アナログ入出力ヤバいんだけど
 ルネサスのデザインリファレンス通りでは無いのであしからず。おまけだと思ってもらえると。  
 ### LED邪魔
@@ -185,14 +211,20 @@ P14のLEDは光らないはずです。RGBバックライトはオフに出来�
 手ハンダでMCUを実装したときに、正しくハンダされているかのチェックに有用です。  
 GPIO全て(P14除く)がプルアップ抵抗有効の入力ピン設定になります。  
 全てのGPIOに順番に GPIOn-GND のように接続し、背面LEDが点灯することを確認して下さい。  
-### なんでRev.1はショートが必要？
+### なんでRev.1/2はショートが必要？
 P16ピンが5V/3.3V/HIGHでなければ、USBブートモードへ移行しないようです。  
 P35はVCCとの接続がありますが、どうやらブートローダのモード設定には使えないようです。ぴえん。  
 使用にはあまり問題は無いと思われます(ファームウェアではP35がUSB0_VBUS設定)が、留意して使用して下さい。 
 ### 普通にP16潰せば良いのでは？
 RIICの割り当てがあります。
+### Rev.2スイッチ切ってもP16使えないんだけど？
+(説明TBD) 配線もしくはスイッチの選択をミスったようです。オフの状態でも多少電流が流れてしまっているようです。  
 ### 配線間違ってるとかアホ？
-( ◠‿◠ ) 
+( ◠‿◠ ) うるせえ 初心者なんだよ
+### AI使うとか雑魚？
+雑魚です。正直かなり助かりました。特にUSB周りはヘルプ無しでは無理だったと思います。  
 ### FAQ舐めてんの？
-あくまで勉強のための趣味の品だと思って頂けると幸いです。でもこんな素人の作品に本気になってどーすんのｗ   
+あくまで勉強のための趣味の品だと思って頂けると幸いです。こんな素人の作品に本気になってどーすんのｗ   
+### 設計者は何奴？
+なんかよくわからんキーボード好きの人間です。普段はRP2040で制作しています。どうでもいいですが求職中です。(26/2/11)
 </details>
