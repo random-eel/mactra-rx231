@@ -4,6 +4,8 @@
 
 # Mactra RX231搭載 エンコーダ付き7キーマクロパッド/開発ボード
 Mactra はRenesas製RX231マイコンを搭載した、7キーマクロパッド 兼 開発ボードです。  
+キーマップ変更は[こちらのサイト](https://random-eel.github.io/mactra-configurator/index.html)へ (要WebHID対応)  
+  
 ## 仕様・機能
  - Renesas製 RX231 マイクロコントローラ搭載 (R5F52315ADFL 48ピンQFP)
     - 32MHz 動作 (16MHz 外部発振器付き)
@@ -39,10 +41,8 @@ Mactra はRenesas製RX231マイコンを搭載した、7キーマクロパッド
 |✅️|USBファンクション動作|USBデバイスとして認識|
 |✅️|キーボード動作|マクロキーとして使用可能に|
 |✅️|[RGB LED動作](https://github.com/random-eel/mactra-rx231/blob/main/firmwares/RX231-Mactra-SK6812Mini-E-Test.mot)|SK6812Mini-Eの点灯|
-|🔜|RGB LED設定対応|キー同時押し等で変更|
-|⚠️|キーの設定変更対応|(ストレッチゴール)*|  
-  
-\* 現状マイコンとの通信方法が無いため、実装は未定です。  
+|✅️|RGB LED設定対応|キー同時押し等で変更|
+|✅️|キーの設定変更対応|(ストレッチゴール)|  
 
 ## 使用方法
 Mactra本体とホストデバイスをUSB-Cケーブルで接続します。  
